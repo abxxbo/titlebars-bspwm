@@ -4,7 +4,7 @@
 # run lemonbar script
 
 if [[ "$#" == "0" ]]; then
-  bash lemonbar-script.sh | lemonbar -B "#000" -d |
+  bash ~/.config/bar/bar.sh | lemonbar -B "#000" -d |
     while read line; do
       IFS=$'\t' read -ra cmd <<< "${line}"
       case "${cmd[0]}" in
