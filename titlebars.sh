@@ -4,7 +4,7 @@
 # run lemonbar script
 
 if [[ "$#" == "0" ]]; then
-  bash ~/.config/bar/bar.sh | lemonbar -B "#000" -n "Bar." -d 2>/dev/null
+  bash ~/.config/bar/bar.sh | lemonbar -B "#000" -n "Bar." -d 2>/dev/null &
 else
   # 1st argument
   case $1 in
@@ -34,7 +34,7 @@ else
 fi
   
 
-bar=20971524
+bar=$(xdotool search "lemonbar")
 
 while true
 do
