@@ -1,5 +1,39 @@
 #!/bin/bash
 
+
+# run lemonbar script
+
+if [[ "$#" == "0" ]]; then
+  bash ~/.config/bar/bar.sh | lemonbar -B "#000" -n "Bar." -d 2>/dev/null
+else
+  # 1st argument
+  case $1 in
+    "--help")
+      # cat << EOF dont work :(
+      echo "Usage: titlebars.sh [Background Color] [Position -- left, right, top, or bottom]"
+      exit
+      ;;
+    *)
+      ;;
+  esac
+  # 2st argument
+  case $2 in
+    "left")
+      ;;
+    "right")
+      ;;
+    "top")
+      ;;
+    "bottom")
+      ;;
+    *)
+      echo "what?"
+      exit
+      ;;
+  esac
+fi
+  
+
 bar=20971524
 
 while true
