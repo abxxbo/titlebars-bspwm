@@ -1,7 +1,6 @@
 #!/bin/bash
 
-bar=44040196
-
+bar=20971524
 
 while true
 do
