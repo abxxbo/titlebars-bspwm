@@ -2,7 +2,11 @@
 
 ## Video Demo
 
-<iframe src="https://cdn.discordapp.com/attachments/635625917623828520/953351315273162822/titlebars.mp4" frameborder="0" allowfullscreen="true"></iframe>
+<video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="path/to/video.mp4" type="video/mp4">
+    <source src="path/to/video.ogg" type="video/ogg">
+    <source src="path/to/video.webm" type="video/webm">
+  </video>
 
 ## Checklist
 - [ ] Close, Minimize and Maximize buttons on title bar
