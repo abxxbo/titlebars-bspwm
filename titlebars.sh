@@ -4,7 +4,15 @@
 # run lemonbar script
 
 if [[ "$#" == "0" ]]; then
-  bash ~/.config/bar/bar.sh | lemonbar -B "#000" -n "Bar." -d 2>/dev/null &
+  bash lemonbar-script.sh | lemonbar -B "#000" -d |
+    while read line; do
+      IFS=$'\t' read -ra cmd <<< "${line}"
+      case "${cmd[0]}" in
+        exit) bspc node -c ;;
+        maxi) bspc node -t fullscreen ;;
+        *) ;;
+      esac
+    done &
 else
   # 1st argument
   case $1 in
