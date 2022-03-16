@@ -44,9 +44,9 @@ function run_lemonbar(){
 # bottom (bottom side of window)
 state="top"
 
-if [[ "$#" == "0" ]]; then
-  run_lemonbar
-else
+
+## Run lemonbar with (some) arguments
+if [[ "$#" == "0" ]]; then run_lemonbar; else
   case $2 in
     "left")
       ;;
@@ -75,17 +75,32 @@ else
 fi
   
 
-bar=$(xdotool search "lemonbar")
+if [ -n "$POSITION" ]; then
+  case "$POSITION" in
+    "top") ;; # dont do anything
+    *)
+      state="$position"
+      ;;
+  esac
+else
+  echo "Position is not set. Defaulting to top."
+  state = "top"
+fi
+
+bar_id=$(xdotool search "lemonbar")
 
 while true
 do
   title="$(xdotool getactivewindow getwindowname)"
-  winsize="$(xwininfo -id `xdotool getactivewindow` | grep "Width: " | cut -c10-999)"
-  winheight=$(echo "$(xwininfo -id `xdotool getactivewindow` | grep 'Absolute upper-left Y:' | cut -c27-999)" | bc)
-  xpos="$(xwininfo -id `xdotool getactivewindow` | grep "Absolute upper-left X:" | cut -c27-999)"
-  echo "$winsize / $title"
-
-  # set width of window 
-  # gravity, X, Y, width, height
-  wmctrl -ir $bar -e 1,$xpos,$winheight,$winsize,20
+  
+  case "$status" in
+    "top")
+      winsize="$(xwininfo -id `xdotool getactivewindow` | grep "Width: " | cut -c10-999)"
+      winheight=$(echo "$(xwininfo -id `xdotool getactivewindow` | grep 'Absolute upper-left Y:' | cut -c27-999)" | bc)
+      xpos="$(xwininfo -id `xdotool getactivewindow` | grep "Absolute upper-left X:" | cut -c27-999)"
+      # set width of window 
+      # gravity, X, Y, width, height
+      wmctrl -ir $bar -e 1,$xpos,$winheight,$winsize,20
+    ;;
+  esac
 done
